@@ -340,9 +340,10 @@ return this.client.getContactById(this.author || this.from);
  * @returns {Promise<Array<Contact>>}
  */
 async getMentions() {
-return this.mentionedIds.forEach((mentionedId) => {
-  console.log(mentionedId._serialized);
-})
+return Array.isArray(this._data.mentionedJidList) &&
+this._data.mentionedJidList.length !== 0
+? this._data.mentionedJidList.map((a) => a._serialized)
+: []
 }
 
 /**
