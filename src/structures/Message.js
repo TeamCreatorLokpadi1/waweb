@@ -273,20 +273,7 @@ data.listResponse.singleSelectReply.selectedRowId
 ) {
 this.selectedRowId = data.listResponse.singleSelectReply.selectedRowId;
 }
-if (this.type == MessageTypes.POLL_CREATION) {
-/** Selectable poll options */
-this.pollOptions = data.pollOptions.map((option) => {
-return option.name;
-});
 
-/** Current poll votes, refresh with Message.refreshPollVotes() */
-this.pollVotes = data.pollVotes.map((pollVote) => {
-return new PollVote(this.client, {
-...pollVote,
-pollCreationMessage: this,
-});
-});
-}
 return super._patch(data);
 }
 
@@ -340,15 +327,12 @@ return this.client.getContactById(this.author || this.from);
  * @returns {Promise<Array<Contact>>}
  */
 async getMentions() {
-return Array.isArray(this._data.mentionedJidList) &&
-this._data.mentionedJidList.length !== 0
-? this._data.mentionedJidList.map((a) => a._serialized)
-: []
+return await Promise.all(this.mentionedIds.map(async m => await this.client.getContactById(m)));
 }
 
 /**
- * Returns the quoted message, if any
- * @returns {Promise<Message>}
+ * get the message that was replied
+ * @returns 
  */
 async getQuotedMessage() {
 if (!this.hasQuotedMsg) return undefined;
@@ -363,14 +347,10 @@ return new Message(this.client, quotedMsg);
 }
 
 /**
- * Sends a message as a reply to this message. If chatId is specified, it will be sent
- * through the specified Chat. If not, it will send the message
- * in the same Chat as the original message was sent.
- *
- * @param {string|MessageMedia|Location} content
- * @param {string} [chatId]
- * @param {MessageSendOptions} [options]
- * @returns {Promise<Message>}
+ * Send message with reply
+ * @param {*} content 
+ * @param {*} chatId 
+ * @param {*} options 
  */
 async reply(content, chatId, options = {}) {
 if (!chatId) {
@@ -381,10 +361,10 @@ quoted: this.id._serialized,
 ...options,
 });
 }
+
 /**
- * React to this message with an emoji
- * @param {string} reaction - Emoji to react with. Send an empty string to remove the reaction.
- * @return {Promise}
+ * React this message with emoji
+ * @param {*} reaction 
  */
 async react(reaction) {
 await this.client.mPage.evaluate(
@@ -401,14 +381,6 @@ messageId: this.id._serialized,
 reaction,
 }
 );
-}
-
-/**
- * Accept Group V4 Invite
- * @returns {Promise<Object>}
- */
-async acceptGroupV4Invite() {
-return await this.client.acceptGroupV4Invite(this.inviteV4);
 }
 
 /**
@@ -639,64 +611,30 @@ return new Payment(this.client, msg);
 return undefined;
 }
 
-/**
- * Refresh the current poll votes
- * @returns {Promise<void>}
- */
 async refreshPollVotes() {
-if (this.type != MessageTypes.POLL_CREATION)
-throw "Invalid usage! Can only be used with a pollCreation message";
-const pollVotes = await this.client.evaluate((parentMsgId) => {
-return window.Store.PollVote.getForParent(parentMsgId)
-.getModelsArray()
-.map((a) => a.serialize());
-}, this.id);
+if (this.type !== MessageTypes.POLL_CREATION) throw 'Invalid usage! Can only be used with a pollCreation message';
+const pollVotes = await this.client.mPage.evaluate((parentMsgId) => {
+return window.Store.PollVote.getForParent([parentMsgId]).map(a => a.serialize())[0];
+}, this.id._serialized);
 this.pollVotes = pollVotes.map((pollVote) => {
-return new PollVote(this.client, {
-...pollVote,
-pollCreationMessage: this,
-});
+return new PollVote(this.client, {...pollVote, pollCreationMessage: this});
 });
 return;
 }
 
 /**
- * Vote to the poll.
- * @param {Array<string>} selectedOptions Array of options selected.
- * @returns {Promise<void>}
- */
+* Vote to the poll.
+* @param {Array<string>} selectedOptions Array of options selected.
+* @returns {Promise<void>}
+*/
 async vote(selectedOptions) {
-if (this.type != MessageTypes.POLL_CREATION)
-throw "Invalid usage! Can only be used with a pollCreation message";
+if (this.type !== MessageTypes.POLL_CREATION) throw 'Invalid usage! Can only be used with a pollCreation message';
 
-return this.client.evaluate(
-(creationMsgId, selectedOptions) => {
+return await this.client.mPage.evaluate(({ creationMsgId, selectedOptions }) => {
 window.WWebJS.votePoll(creationMsgId, selectedOptions);
-},
-this.id,
-selectedOptions
-);
+}, { creationMsgId: this.id._serialized, selectedOptions });
 }
 
-/**
- * Vote to the poll.
- * @param {Array<string>} selectedOptions Array of options selected.
- * @returns {Promise<void>}
- */
-async vote(selectedOptions) {
-if (this.type !== MessageTypes.POLL_CREATION)
-throw "Invalid usage! Can only be used with a pollCreation message";
-
-return await this.client.mPage.evaluate(
-({ creationMsgId, selectedOptions }) => {
-window.WWebJS.votePoll(creationMsgId, selectedOptions);
-},
-{
-creationMsgId: this.id._serialized,
-selectedOptions,
-}
-);
-}
 
 /**
  *

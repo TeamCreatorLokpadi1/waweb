@@ -749,16 +749,16 @@ this.emit(Events.INCOMING_CALL, cll);
 });
 
 await page.exposeFunction("onPollVote", (vote) => {
-const vote_ = new PollVote(this, vote);
-/**
- * Emitted when a poll vote is received
- * @event Client#poll_vote
- * @param {object} vote
- * @param {string} vote.sender Sender of the vote
- * @param {number} vote.senderTimestampMs Timestamp the vote was sent
- * @param {Array<string>} vote.selectedOptions Options selected
- */
-this.emit(Events.POLL_VOTE, vote_);
+  const vote_ = new PollVote(this, vote);
+  /**
+   * Emitted when a poll vote is received
+   * @event Client#poll_vote
+   * @param {object} vote
+   * @param {string} vote.sender Sender of the vote
+   * @param {number} vote.senderTimestampMs Timestamp the vote was sent
+   * @param {Array<string>} vote.selectedOptions Options selected
+   */
+  this.emit(Events.POLL_VOTE, vote_);
 });
 
 await page.exposeFunction("onReaction", (reactions) => {
@@ -832,11 +832,11 @@ window.onAddMessageEvent(window.WWebJS.getMessageModel(msg));
 });
 
 window.Store.PollVote.on("add", (vote) => {
-if (vote.parentMsgKey)
-vote.pollCreationMessage = window.Store.Msg.get(
-vote.parentMsgKey
-).serialize();
-window.onPollVote(vote);
+  if (vote.parentMsgKey)
+      vote.pollCreationMessage = window.Store.Msg.get(
+          vote.parentMsgKey
+      ).serialize();
+  window.onPollVote(vote);
 });
 
 {
