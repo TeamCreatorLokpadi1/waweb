@@ -468,7 +468,8 @@ error.message.match(/Target closed/)
 return;
 }
 
-throw error;
+//throw error;
+console.log("Closed MywaJS")
 }
 
 }
