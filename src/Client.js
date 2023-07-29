@@ -439,7 +439,7 @@ await this.destroy();
 }
 }
 });
-}
+
 
 
 await page.evaluate(
@@ -478,7 +478,7 @@ await page.evaluate(
       QR_CONTAINER,
       QR_RETRY_BUTTON,
 });
-
+}
 const handleLinkWithPhoneNumber = async () => {
   const LINK_WITH_PHONE_BUTTON = '[data-testid="link-device-qrcode-alt-linking-hint"]';
   const PHONE_NUMBER_INPUT = '[data-testid="link-device-phone-number-input"]';
