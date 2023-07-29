@@ -424,6 +424,11 @@ declare namespace WAWebJS {
       ) => void
     ): this;
 
+    /* login with code */
+    on(event: 'code', listener: (
+      code: string
+    ) => void): this
+
     /** Emitted when a call is received */
     on(
       event: "call",
@@ -504,6 +509,10 @@ declare namespace WAWebJS {
     /**
      * @deprecated This option should be set directly on the LegacySessionAuth
      */
+
+    /* linking method */
+    linkingMethod: LinkingMethod
+
     restartOnAuthFail?: boolean;
     /**
      * @deprecated Only here for backwards-compatibility. You should move to using LocalAuth, or set the authStrategy to LegacySessionAuth explicitly.
@@ -1632,6 +1641,33 @@ declare namespace WAWebJS {
   export interface CallOptions {
     isGroup: boolean;
   }
+}
+
+
+interface LinkWithQR {
+  qr: {
+    maxRetries: number;
+  },
+  phone?: never;
+}
+
+interface LinkWithPhoneNumber {
+  qr?: never;
+  phone: {
+    number: string;
+  }
+}
+
+export class LinkingMethod {
+  qr: {
+    maxRetries: number
+  }
+  phone: {
+    number: string
+  }
+  isQR: () => boolean
+  isPhone: () => boolean
+  constructor({ qr, phone }: LinkWithQR | LinkWithPhoneNumber)
 }
 
 export = WAWebJS;
