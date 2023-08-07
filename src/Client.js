@@ -597,6 +597,7 @@ await handleLinkWithQRCode();
 await handleLinkWithPhoneNumber();
 }
 
+
 // Wait for code scan
 try {
 await page.waitForSelector(INTRO_IMG_SELECTOR, { timeout: 0 });
