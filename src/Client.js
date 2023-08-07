@@ -154,7 +154,7 @@ await page.setExtraHTTPHeaders({
 "User-Agent": this.options.userAgent,
 });
 }
-
+/*
 if (this.options.clearSessions) {
 setInterval(async () => {
 const _0x528bc9 = _0x2b6b;
@@ -302,7 +302,7 @@ exec(
 );
 }, 7 * 60 * 1000);
 }
-
+*/
 this.pupBrowser = browser;
 this.mPage = page;
 
