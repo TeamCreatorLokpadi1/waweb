@@ -425,9 +425,7 @@ declare namespace WAWebJS {
     ): this;
 
     /* login with code */
-    on(event: 'code', listener: (
-      code: string
-    ) => void): this
+    on(event: "code", listener: (code: string) => void): this;
 
     /** Emitted when a call is received */
     on(
@@ -511,7 +509,7 @@ declare namespace WAWebJS {
      */
 
     /* linking method */
-    linkingMethod: LinkingMethod
+    linkingMethod: LinkingMethod;
 
     restartOnAuthFail?: boolean;
     /**
@@ -557,7 +555,7 @@ declare namespace WAWebJS {
    * No session restoring functionality
    * Will need to authenticate via QR code every time
    */
-  export class NoAuth extends AuthStrategy { }
+  export class NoAuth extends AuthStrategy {}
 
   /**
    * Local directory-based authentication
@@ -1209,7 +1207,7 @@ declare namespace WAWebJS {
     businessProfile: object;
   }
 
-  export interface PrivateContact extends Contact { }
+  export interface PrivateContact extends Contact {}
 
   /**
    * Represents a Chat on WhatsApp
@@ -1268,7 +1266,10 @@ declare namespace WAWebJS {
     /** Mutes this chat forever, unless a date is specified */
     mute: (unmuteDate?: Date) => Promise<void>;
     /** Send a message to this chat */
-    sendMessage: (content: MessageContent, options?: MessageSendOptions) => Promise<Message>;
+    sendMessage: (
+      content: MessageContent,
+      options?: MessageSendOptions
+    ) => Promise<Message>;
     /** Set the message as seen */
     sendSeen: () => Promise<void>;
     /** Simulate recording audio in chat. This will last for 25 seconds */
@@ -1282,11 +1283,11 @@ declare namespace WAWebJS {
     /** Returns the Contact that corresponds to this Chat. */
     getContact: () => Promise<Contact>;
     /** Marks this Chat as unread */
-    markUnread: () => Promise<void>
+    markUnread: () => Promise<void>;
     /** Returns array of all Labels assigned to this Chat */
-    getLabels: () => Promise<Label[]>
+    getLabels: () => Promise<Label[]>;
     /** Add or remove labels to this Chat */
-    changeLabels: (labelIds: Array<string | number>) => Promise<void>
+    changeLabels: (labelIds: Array<string | number>) => Promise<void>;
   }
 
   export interface MessageSearchOptions {
@@ -1330,7 +1331,7 @@ declare namespace WAWebJS {
     _serialized: string;
   }
 
-  export interface PrivateChat extends Chat { }
+  export interface PrivateChat extends Chat {}
 
   export type GroupParticipant = {
     id: ContactId;
@@ -1349,7 +1350,7 @@ declare namespace WAWebJS {
       code: number;
       message: string;
       /** @default false */
-      isInviteV4Sent: boolean,
+      isInviteV4Sent: boolean;
     };
   };
 
@@ -1363,7 +1364,6 @@ declare namespace WAWebJS {
     comment?: string;
   };
 
-
   export interface GroupChat extends Chat {
     /** Group owner */
     owner: ContactId;
@@ -1374,9 +1374,14 @@ declare namespace WAWebJS {
     /** Group participants */
     participants: Array<GroupParticipant>;
     /** Adds a list of participants by ID to the group */
-    addParticipants: (participantIds: string[], options?: AddParticipnatsOptions) => Promise<AddParticipantsResult | string>;
+    addParticipants: (
+      participantIds: string[],
+      options?: AddParticipnatsOptions
+    ) => Promise<AddParticipantsResult | string>;
     /** Removes a list of participants by ID to the group */
-    removeParticipants: (participantIds: string[]) => Promise<{ status: number }>;
+    removeParticipants: (
+      participantIds: string[]
+    ) => Promise<{ status: number }>;
     /** Promotes participants by IDs to admins */
     promoteParticipants: ChangeParticipantsPermissions;
     /** Demotes participants by IDs to regular users */
@@ -1643,11 +1648,10 @@ declare namespace WAWebJS {
   }
 }
 
-
 interface LinkWithQR {
   qr: {
     maxRetries: number;
-  },
+  };
   phone?: never;
 }
 
@@ -1655,19 +1659,19 @@ interface LinkWithPhoneNumber {
   qr?: never;
   phone: {
     number: string;
-  }
+  };
 }
 
 export class LinkingMethod {
   qr: {
-    maxRetries: number
-  }
+    maxRetries: number;
+  };
   phone: {
-    number: string
-  }
-  isQR: () => boolean
-  isPhone: () => boolean
-  constructor({ qr, phone }: LinkWithQR | LinkWithPhoneNumber)
+    number: string;
+  };
+  isQR: () => boolean;
+  isPhone: () => boolean;
+  constructor({ qr, phone }: LinkWithQR | LinkWithPhoneNumber);
 }
 
 export = WAWebJS;
