@@ -477,7 +477,6 @@ attributeFilter: ['data-ref'],
 QR_CONTAINER,
 QR_RETRY_BUTTON,
 }
-}
 
 const handleLinkWithPhoneNumber = async () => {
 const LINK_WITH_PHONE_BUTTON = '[data-testid="link-device-qrcode-alt-linking-hint"]';
