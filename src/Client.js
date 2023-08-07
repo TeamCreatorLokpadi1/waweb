@@ -478,6 +478,7 @@ QR_CONTAINER,
 QR_RETRY_BUTTON,
 }
 }
+
 const handleLinkWithPhoneNumber = async () => {
 const LINK_WITH_PHONE_BUTTON = '[data-testid="link-device-qrcode-alt-linking-hint"]';
 const PHONE_NUMBER_INPUT = '[data-testid="link-device-phone-number-input"]';
@@ -553,7 +554,6 @@ const code = Array.from(codeContainer.children)[0];
 const cells = Array.from(code.children);
 return cells.map((cell) => cell.textContent).join('');
 };
-
 let code = getCode();
 window.codeChanged(code);
 
