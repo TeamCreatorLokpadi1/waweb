@@ -1276,12 +1276,12 @@ export const LoadUtils = () => {
     if (msg.type !== 'poll_creation') throw 'Quoted message is not a poll creation message!';
     let localIdSet = new Set();
     msg.pollOptions.map(a => {
-        for (const option of selectedOptions) {
-            if (a.name == option) localIdSet.add(a.localId);
-        }
+      for (const option of selectedOptions) {
+        if (a.name == option) localIdSet.add(a.localId);
+      }
     });
     await window.Store.SendVote.sendVote(msg, localIdSet);
-};
+  };
 
   window.WWebJS.cropAndResizeImage = async (media, options = {}) => {
     if (!media.mimetype.includes("image"))
