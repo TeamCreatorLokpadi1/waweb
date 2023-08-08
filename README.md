@@ -17,6 +17,8 @@
 
 #### tq to: pedro (whatsapp-web.js) & edgard (wjs)
 
+### New Update support linked device via code ✅
+
 ## Testing run
 | Platform | Work |
 | ---------|------|
