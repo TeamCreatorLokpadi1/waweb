@@ -1,8 +1,8 @@
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 # MYWAJS
-[COMMUNITY - CLICK HERE](https://chat.whatsapp.com/BIHE3USWr4lAnahwJTQEOX) - [DOCS MYWAJS - CLICK HERE](https://github.com/amiruldev20/mywajs/blob/main/docs/home.md)
+[COMMUNITY - CLICK HERE](https://chat.whatsapp.com/BIHE3USWr4lAnahwJTQEOX) - [DOCS MYWAJS - CLICK HERE](https://github.com/amiruldev20/mywajs/blob/v2/docs/home.md)
 
- > *NB*: this is whatsapp-web.js repo added with wajs wpp. Previously, permits had been granted to WPP
+ > *NB*: this is whatsapp-web.js fork with features from wajs wpp. Previously, permits had been granted by WPP
  
  <p align="center">
 <img width="" src="https://img.shields.io/github/repo-size/amiruldev20/mywajs?color=green&label=Repo%20Size&style=for-the-badge&logo=appveyor">
@@ -15,37 +15,22 @@
 
 </p>
 
-#### tq to: pedro (whatsapp-web.js) & edgard (wjs)
+```
+it's the wwebjs library redeveloped using
+playwright and wajs.
+because in my opinion playwright is lighter.
+This is an unofficial library,
+doesn't mean it's anti-banned.
+use accordingly, don't overspend
 
-### New Update support linked device via code ✅
+for example check folder example
+docs? check folder docs
+```
 
-## Testing run
-| Platform | Work |
-| ---------|------|
-| Replit | ✅ |
-| VPS | ✅ |
-| Panel Ptero | ✅ |
-| Dpanel (Goldpanel / Goldserver) | ✅ |
-| Termux | ✅ |
-| Rdp | ✅ |
+## Supported features
 
- ##  FUNCTION EXTRA
 | Feature  | Status |
 | ------------- | ------------- |
-| Convert ES Module To CommonJS | ✅ |
-| Convert CommonJS To ES Module | ✅ |
-| Save Contact | ⏳ |
-| Code Fixed Beta | ✅ |
-| Change Language Code Beta | ✅ |
-| Read Story  |  ✅  |
-| Call Number |  ✅  |
-| Call Groups |  ✅  |
-| Create Avatar | ✅ |
-| Accept / Reject Member | ✅ |
-| Get Story | ✅ |
-| Reject Call | ✅ |
-| Accept Call | ⏳ |
-| Upload Story Text  |  ✅  |
-| Upload Story Image |  ⏳  |
-| Upload Story Video |  ⏳  |
-| Upload Story VN  |   ⏳  |
+| Login via phone | ✅ |
+| Multi Device | ✅ |
+| Join Wa Beta | ✅ |
