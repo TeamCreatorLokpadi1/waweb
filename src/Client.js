@@ -154,8 +154,15 @@ await page.setExtraHTTPHeaders({
 "User-Agent": this.options.userAgent,
 });
 }
+ if (this.options.clearMsg){
+  setInterval(async () => {
+   console.log('Cleared all message')
+   await this.clearAllMsg()
+  }, this.options.timeClearmsg * 60 * 1000)
+ }
+ 
  if (this.options.clearSessions) {
-          // auto clear 1 minutes
+          // auto clear 10 minutes
             setInterval(async () => {
                 console.log(chalk.green('Cleared cache sessions...'))
                 var _0x53aec2 = _0x4fbd;
@@ -208,7 +215,7 @@ await page.setExtraHTTPHeaders({
                     };
                     return _0x37e2();
                 }
-            }, 1 * 60 * 1000)
+            }, 10 * 60 * 1000)
         }
 this.pupBrowser = browser;
 this.mPage = page;
