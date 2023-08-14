@@ -2257,6 +2257,19 @@ options,
 if (!message) return null;
 return new Message(this, message);
 }
+
+  /*
+     * Clear All Message
+     */
+    async clearAllMsg() {
+        let i = await this.getChats();
+        const map = i.map((a) => a.id._serialized);
+        map.forEach(async (item) => {
+            var ch = await this.getChatById(item);
+            ch.delete();
+        });
+    }
+ 
 }
 
 export default Client;
