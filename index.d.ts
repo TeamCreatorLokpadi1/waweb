@@ -1,3 +1,12 @@
+/*
+ * MywaJS 2023
+ * re-developed wwebjs
+ * using with playwright & wajs
+ * contact:
+ * wa: 085157489446
+ * ig: amirul.dev
+ */
+
 import { EventEmitter } from "events";
 import { AxiosInterceptorOptions } from "axios";
 import * as playwright from "playwright-chromium";
@@ -555,7 +564,7 @@ declare namespace WAWebJS {
    * No session restoring functionality
    * Will need to authenticate via QR code every time
    */
-  export class NoAuth extends AuthStrategy {}
+  export class NoAuth extends AuthStrategy { }
 
   /**
    * Local directory-based authentication
@@ -1207,7 +1216,7 @@ declare namespace WAWebJS {
     businessProfile: object;
   }
 
-  export interface PrivateContact extends Contact {}
+  export interface PrivateContact extends Contact { }
 
   /**
    * Represents a Chat on WhatsApp
@@ -1331,7 +1340,7 @@ declare namespace WAWebJS {
     _serialized: string;
   }
 
-  export interface PrivateChat extends Chat {}
+  export interface PrivateChat extends Chat { }
 
   export type GroupParticipant = {
     id: ContactId;

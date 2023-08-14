@@ -1,23 +1,32 @@
+/*
+ * MywaJS 2023
+ * re-developed wwebjs
+ * using with playwright & wajs
+ * contact:
+ * wa: 085157489446
+ * ig: amirul.dev
+ */
+
 'use strict';
 
 export { default as Client } from './src/Client.js';
 
 // Structures
-export { 
-    Chat, 
-    PrivateChat, 
-    GroupChat, 
-    Message, 
-    MessageMedia, 
-    Contact, 
-    PrivateContact, 
-    BusinessContact, 
-    ClientInfo, 
-    Location, 
-    ProductMetadata, 
-    List, 
-    Buttons, 
-    PollVote, 
+export {
+    Chat,
+    PrivateChat,
+    GroupChat,
+    Message,
+    MessageMedia,
+    Contact,
+    PrivateContact,
+    BusinessContact,
+    ClientInfo,
+    Location,
+    ProductMetadata,
+    List,
+    Buttons,
+    PollVote,
     Call,
     LinkingMethod
 } from './src/structures/index.js';

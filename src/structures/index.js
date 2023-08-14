@@ -1,3 +1,12 @@
+/*
+ * MywaJS 2023
+ * re-developed wwebjs
+ * using with playwright & wajs
+ * contact:
+ * wa: 085157489446
+ * ig: amirul.dev
+ */
+
 export { default as Base } from './Base.js';
 export { default as BusinessContact } from './BusinessContact.js';
 export { default as Chat } from './Chat.js';
